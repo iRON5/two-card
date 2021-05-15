@@ -1,33 +1,59 @@
 body {
-    background-color: #308b5a;
-    color: #fef72c;
-    font-family: Helvetica, sans-serif;
-    margin: 1em 2em;
+  background-color: #308b5a;
+  color: #fef72c;
+  font-family: Helvetica, sans-serif;
+  margin: 1em 2em;
 }
+
 h1 {
-    text-shadow: 1px 2px #444;
+  text-shadow: 1px 2px #444;
+}
+
+section {
+  padding-top: 1em;
 }
 
 /* Cards */
 .card {
-    height: 125px;
-    width: 100px;
+  height: 125px;
+  width: 100px;
 }
 
-
-/* Button */
+/* Buttons */
 .play-button {
-    background-color: #4b1124;
-    border: 4px double #cfb338;
-    box-shadow: 4px 4px 5px #333;
-    color: #eee;
-    cursor: pointer;
-    font-size: 24px;
-    padding: 0.5em 2em;
+  background-color: #4b1124;
+  border: 4px double #cfb338;
+  box-shadow: 4px 4px 5px #333;
+  color: #eee;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 0.5em 2em;
 }
+
 .play-button:active {
-    position: relative;
-    top: 4px;
-    left: 4px;
-    box-shadow: none;
+  position: relative;
+  top: 4px;
+  left: 4px;
+  box-shadow: none;
+}
+
+.button {
+  margin-right: 1em;
+}
+
+.button:active {
+  position: relative;
+  top: 4px;
+  left: 4px;
+  box-shadow: none;
+}
+
+.config-button {
+  background-color: #2f615a;
+  border: 4px double #cfb338;
+  box-shadow: 4px 4px 5px #333;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0.1em 0.8em;
 }

@@ -1,21 +1,29 @@
 import React from 'react';
 import './App.css';
+import { Game } from './Game';
 
 function App() {
   return (
-    <div className="App">
-
+    <div className='App'>
       <h1>Instructions:</h1>
       <p>
-        Create a mini game where clicking the button generates several hand cards.<br />
-        Please be sure to fork this repo and update the readme file with your notes.
+        Create a mini game where clicking the button generates several hand
+        cards.
+        <br />
+        Please be sure to fork this repo and update the readme file with your
+        notes.
       </p>
       <ul>
         <li>A hand has 7 cards</li>
-        <li>The winner of the game will be by the amount of pairs a hand has</li>
+        <li>
+          The winner of the game will be by the amount of pairs a hand has
+        </li>
         <li>Each "deal" will create a brand new "game" with new hands</li>
         <li>Display those hands</li>
-        <li>Mark each hand "pairs" with proper border. Be sure diff pair has diff border</li>
+        <li>
+          Mark each hand "pairs" with proper border. Be sure diff pair has diff
+          border
+        </li>
         <li>Game has two hands by default</li>
         <li>Organized code</li>
       </ul>
@@ -28,16 +36,14 @@ function App() {
       <h2>Helpers</h2>
       <div>
         <h4>Example Card:</h4>
-        <img src="http://h3h.net/images/cards/diamond_3.svg" alt="example card" className="card" />
+        <img
+          src='http://h3h.net/images/cards/diamond_3.svg'
+          alt='example card'
+          className='card'
+        />
       </div>
 
-      <div>
-        <h4>Deal Button:</h4>
-        <button className="play-button">
-          Deal Cards
-        </button>
-      </div>
-
+      <Game />
     </div>
   );
 }
