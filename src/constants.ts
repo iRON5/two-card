@@ -18,3 +18,9 @@ export const CARD_VALUES = [
   'A',
 ];
 export const COUNTDOWN = 3;
+export const STATUS = {
+  prepare: 'PREPARE',
+  deal: 'DEAL_CARDS',
+  compare: 'COMPARE',
+  view: 'VIEW_RESULTS',
+};
