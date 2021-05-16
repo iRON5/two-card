@@ -1,6 +1,20 @@
 
 <div style="background: #308b5a; padding: 10px; color: #fef72d">
 
+# Game flow
+
+```
+                         ________________ filter round winners ________________
+                        |                                                     |
+                        v                                                     |
+Prepare -> Start -> Deal cards -> Wait for open -> Open –> Compare -> Wait for next round
+            |                                                 |
+            v                                                 v
+      create players                                  show winner and stop
+            +
+        reset temp
+```
+
 # Test Project
 
 <p>
