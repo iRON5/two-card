@@ -18,10 +18,10 @@ function App() {
         <li>
           The winner of the game will be by the amount of pairs a hand has
         </li>
-        <li>Each "deal" will create a brand new "game" with new hands</li>
+        <li>Each &quot;deal&quot; will create a brand new &quot;game&quot; with new hands</li>
         <li>Display those hands</li>
         <li>
-          Mark each hand "pairs" with proper border. Be sure diff pair has diff
+          Mark each hand &quot;pairs&quot; with proper border. Be sure diff pair has diff
           border
         </li>
         <li>Game has two hands by default</li>
