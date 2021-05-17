@@ -50,7 +50,7 @@ export const pickCards = (packOfCards: Card[]) => {
   }
 
   // clean empty branches and count pairs
-  for (let [pairsName, pairs] of pairsTree) {
+  for (const [pairsName, pairs] of pairsTree) {
     pairsCount += countFullPairs(pairs);
 
     if (!pairs.length) {

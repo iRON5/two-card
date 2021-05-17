@@ -165,7 +165,7 @@ export const actions = {
   ) {
     const { winners, modifiedPlayers } = compare(round, players);
 
-    for await (let secsLeft of countdown()) {
+    for await (const secsLeft of countdown()) {
       dispatch({ type: 'compare', secsLeft });
     }
 
@@ -174,7 +174,7 @@ export const actions = {
       return;
     }
 
-    for await (let secsLeft of countdown()) {
+    for await (const secsLeft of countdown()) {
       dispatch({ type: 'viewResults', secsLeft });
     }
 
