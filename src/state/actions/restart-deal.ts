@@ -1,4 +1,4 @@
-import { createPlayers, dealCardsForActivePlayers } from "~utils";
+import { createPlayers, dealCards } from "~libs/services";
 
 export const restartDeal = (
   playersCount: number,
@@ -14,7 +14,7 @@ export const restartDeal = (
     newPlayers.pop();
   }
 
-  const playersWithCards = dealCardsForActivePlayers(newPlayers);
+  const playersWithCards = dealCards(newPlayers);
 
   dispatch({ type: 'restartDeal', round: 1, players: playersWithCards });
 };

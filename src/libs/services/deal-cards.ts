@@ -1,8 +1,7 @@
 import shuffle from 'lodash/shuffle';
-import { uniqueNamesGenerator, adjectives, names } from 'unique-names-generator';
 import { CARD_VALUES, CARD_SYMBOLS, DEAL_QUANTITY } from "~constants";
 
- export const getNewPackOfCards = (): Card[] => {
+ const getNewPackOfCards = (): Card[] => {
   return shuffle(
     CARD_SYMBOLS.map(symbol => (
       CARD_VALUES.map(value => ({
@@ -14,7 +13,7 @@ import { CARD_VALUES, CARD_SYMBOLS, DEAL_QUANTITY } from "~constants";
   );
 };
 
-export const countFullPairs = (pairs: Card[][]) => {
+const countFullPairs = (pairs: Card[][]) => {
   return pairs.reduce((acc, pair) => (
     pair.length < 2
       ? acc
@@ -70,74 +69,7 @@ const pickCards = (packOfCards: Card[]) => {
   };
 };
 
-export const createPlayers = (quantity: number) => {
-  const players: Player[] = [];
-
-  for (let i = 0; i < quantity; i++) {
-    const id = uniqueNamesGenerator({
-      dictionaries: [adjectives, names],
-      style: 'capital',
-      separator: ' ',
-    });
-
-    players.push({
-      id,
-      pairs: 0,
-      looseRound: 0,
-      pairsTree: undefined,
-    });
-  }
-
-  return players;
-};
-
-let timeout = 0;
-
-export const countdown = function* (secs: number) {
-  clearTimeout(timeout);
-
-  for (let i = secs; i >= 0; i--) {
-    // eslint-disable-next-line no-loop-func
-    yield new Promise((resolve) => {
-      timeout = window.setTimeout(() => resolve(i), 1000);
-    });
-  }
-};
-
-export const compare = (round: number, players: Player[]) => {
-  const winners = players.slice(1).reduce((winners, player) => {
-    // skip first check if first player already loose
-    if (winners[0].looseRound) {
-      return [player];
-    }
-
-    // skip player which already loosed
-    if (player.looseRound) {
-      return winners;
-    }
-
-    if (player.pairs === winners[0].pairs) {
-      return winners.concat(player);
-    }
-
-    if (player.pairs > winners[0].pairs) {
-      winners.forEach(winner => winner.looseRound = round);
-
-      return [player];
-    }
-
-    player.looseRound = round;
-
-    return winners;
-  }, [players[0]]);
-
-  return {
-    winners,
-    modifiedPlayers: players,
-  };
-};
-
-export const dealCardsForPlayer = (player: Player, packOfCards: Card[]) => {
+const dealCardsForPlayer = (player: Player, packOfCards: Card[]) => {
   const deal = pickCards(packOfCards);
   const pairs = deal.pairs;
 
@@ -153,7 +85,7 @@ export const dealCardsForPlayer = (player: Player, packOfCards: Card[]) => {
   }
 };
 
-export const dealCardsForActivePlayers = (players: Player[]) => {
+export const dealCards = (players: Player[]) => {
   const packOfCards = getNewPackOfCards();
 
   return players.map(player => player.looseRound
