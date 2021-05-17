@@ -40,13 +40,19 @@ const addNewCardOnTree = (card: Card, pairsTree: PairsTree) => {
 /**
  * Deal 7 cards
  */
-export const pickCards = (packOfCards: Card[]) => {
+const pickCards = (packOfCards: Card[]) => {
   const pairsTree = createPairsTree();
   let pairsCount = 0;
 
   // create random cards and spread to groups by value
   for (let i = 0; i < 7; i++) {
-    addNewCardOnTree(packOfCards.pop()!, pairsTree);
+    const newCard = packOfCards.pop();
+
+    if (!newCard) {
+      throw Error('No more cards in pack!');
+    }
+
+    addNewCardOnTree(newCard, pairsTree);
   }
 
   // clean empty branches and count pairs
@@ -85,7 +91,7 @@ export const createPlayers = (quantity: number) => {
   return players;
 };
 
-let timeout: any = 0;
+let timeout = 0;
 
 export const countdown = function* () {
   clearTimeout(timeout);
@@ -93,7 +99,7 @@ export const countdown = function* () {
   for (let i = 10; i >= 0; i--) {
     // eslint-disable-next-line no-loop-func
     yield new Promise((resolve) => {
-      timeout = setTimeout(() => resolve(i), 1000);
+      timeout = window.setTimeout(() => resolve(i), 1000);
     });
   }
 };
@@ -136,7 +142,7 @@ export const dealCardsForPlayer = (player: Player, packOfCards: Card[]) => {
   const pairs = deal.pairs;
 
   // put pairs to the end for easier view
-  const pairsTree = Array.from(deal.pairsTree).sort(([_, pairsA], [__, pairsB]) => (
+  const pairsTree = Array.from(deal.pairsTree).sort(([, pairsA], [, pairsB]) => (
     countFullPairs(pairsA) - countFullPairs(pairsB)
   ));
 

@@ -20,7 +20,7 @@ interface UseGameRounds {
     status: string;
     round: number;
     players: Player[];
-    dispatch: React.Dispatch<object>;
+    dispatch: React.Dispatch<Record<string, unknown>>;
   }): void;
 }
 
@@ -40,7 +40,7 @@ const useGameRounds: UseGameRounds = ({
   }, [round, players, dispatch]);
 };
 
-export const Game = () => {
+export const Game: React.FC = () => {
   const [state, dispatch] = usePairGameState();
   const { status, winner, round, secsLeft, playersCount, players } = state;
   const ready = useReadinessFlag(status);
@@ -86,7 +86,6 @@ export const Game = () => {
             round={round}
             status={status}
             players={players}
-            secsLeft={secsLeft}
           />
         </>
       )}

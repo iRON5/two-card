@@ -77,6 +77,7 @@ const reducers: Reducers = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reducer: React.Reducer<State, any> = (state, action) => {
   const actionType: keyof Reducers = action.type;
   const internalReducer = reducers[actionType] || (() => {
@@ -91,7 +92,7 @@ export const actions = {
     playersCount: number,
     status: string,
     players: Player[],
-    dispatch: React.Dispatch<any>,
+    dispatch: React.Dispatch<Record<string, unknown>>,
   ) {
     if (playersCount >= MAX_HANDS_PAIRS) {
       alert(`${MAX_HANDS_PAIRS} is minimal number of players`);
@@ -110,7 +111,7 @@ export const actions = {
     playersCount: number,
     status: string,
     players: Player[],
-    dispatch: React.Dispatch<any>
+    dispatch: React.Dispatch<Record<string, unknown>>
   ) {
     if (playersCount <= MIN_HANDS_PAIRS) {
       alert(`${MIN_HANDS_PAIRS} is minimal number of players`);
@@ -125,7 +126,10 @@ export const actions = {
     this.passCards(players, dispatch);
     this.restartDeal(playersCount - 1, players, dispatch);
   },
-  passCards(players: Player[], dispatch: React.Dispatch<any>) {
+  passCards(
+    players: Player[],
+    dispatch: React.Dispatch<Record<string, unknown>>,
+  ) {
     const newPlayers = players.map(player => ({
       ...player,
       pairs: 0,
@@ -134,7 +138,10 @@ export const actions = {
 
     dispatch({ type: 'prepare', players: newPlayers });
   },
-  start(playersCount: number, dispatch: React.Dispatch<any>) {
+  start(
+    playersCount: number,
+    dispatch: React.Dispatch<Record<string, unknown>>,
+  ) {
     const players = createPlayers(playersCount);
     const playersWithCards = dealCardsForActivePlayers(players);
 
@@ -143,7 +150,7 @@ export const actions = {
   restartDeal(
     playersCount: number,
     players: Player[],
-    dispatch: React.Dispatch<any>
+    dispatch: React.Dispatch<Record<string, unknown>>
   ) {
     // repair those who loosed before
     const newPlayers = players.map(player => ({ ...player, looseRound: 0 }));
@@ -161,7 +168,7 @@ export const actions = {
   async startComparison(
     round: number,
     players: Player[],
-    dispatch: React.Dispatch<any>
+    dispatch: React.Dispatch<Record<string, unknown>>
   ) {
     const { winners, modifiedPlayers } = compare(round, players);
 

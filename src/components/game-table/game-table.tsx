@@ -6,14 +6,12 @@ import { PlayerCards } from "~components/player-cards";
 interface GameTableProps {
   round: number;
   status: string;
-  secsLeft: number;
   players: Player[];
 }
 
 export const GameTable: React.FC<GameTableProps> = ({
   round,
   status,
-  secsLeft,
   players,
 }) => {
   const showLoose = ({ looseRound }: Player) => (

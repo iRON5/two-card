@@ -2,7 +2,7 @@ import React from 'react';
 import './app.css';
 import { Game } from './components/game';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className='App'>
       <h1>Instructions:</h1>

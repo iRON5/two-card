@@ -23,9 +23,9 @@ export const PlayerCards: React.FC<PlayerCardsProps> = ({ status, round, player 
             <img src="https://github.com/htdebeer/SVG-cards/blob/master/png/1x/back.png?raw=true" className="card card-back" alt="card shirt" />
           </div>
         ))
-      ) : player.pairsTree!.map(([_, pairs], i) => pairs.map(pair => (
+      ) : player.pairsTree?.map(([, pairs], i) => pairs.map(pair => (
         <div key={`${player.id}_${i}`} className={pair.length === 2 ? 'cards-pair' : 'card-wrapper'}>
-          {pair.map((card, j) => (
+          {pair.map((card) => (
             <div key={card.url} className="card-wrapper">
               <img src={card.url} className="card" alt={`${card.symbol} ${card.value}`} />
             </div>
