@@ -1,10 +1,9 @@
 import React from 'react';
-import './app.css';
 import { Game } from './components/game';
 
 const App: React.FC = () => {
   return (
-    <div className='App'>
+    <div>
       <h1>Instructions:</h1>
       <p>
         Create a mini game where clicking the button generates several hand
