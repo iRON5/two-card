@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import "./game.css";
 import { STATUS } from "~constants";
-import { actions, usePairGameState } from '../state';
-import { GameInfo } from './game-info';
-import { GameTable } from './game-table';
+import { actions, usePairGameState } from '~state';
+import { GameInfo } from '~components/game-info';
+import { GameTable } from '~components/game-table';
 
 const useReadinessFlag = (status: string) => {
   const [ready, setReady] = React.useState(false);
@@ -12,31 +13,6 @@ const useReadinessFlag = (status: string) => {
   }, [status]);
 
   return ready;
-};
-
-interface UsePlayersCountTracker {
-  (params: {
-    ready: boolean;
-    playersCount: number;
-    players: Player[];
-    dispatch: React.Dispatch<object>;
-  }): void;
-}
-
-const usePlayersCountTracker: UsePlayersCountTracker = ({
-  ready,
-  playersCount,
-  players,
-  dispatch,
-}) => {
-  useEffect(() => {
-    // ignore if game was not started or players count was not changed
-    if (!ready || playersCount === players.length) {
-      return;
-    }
-
-    actions.restartDeal(playersCount, players, dispatch);
-  }, [playersCount, ready, players, dispatch]);
 };
 
 interface UseGameRounds {
@@ -72,14 +48,6 @@ export const Game = () => {
   const addPlayer = () => actions.addPlayer(playersCount, status, players, dispatch);
   const removePlayer = () => actions.removePlayer(playersCount, status, players, dispatch);
   const startNewGame = () => actions.start(playersCount, dispatch);
-
-  // deal new cards on change players count
-  // usePlayersCountTracker({
-  //   ready,
-  //   playersCount,
-  //   players,
-  //   dispatch,
-  // });
 
   // start rounds
   useGameRounds({

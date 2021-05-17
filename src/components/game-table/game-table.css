@@ -1,0 +1,19 @@
+
+.players {
+  margin-top: 40px;
+  display: flex;
+  gap: 64px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.player {
+  width: 340px;
+  transition: all 3s ease 1s;
+  transform: scale(1);
+}
+
+.player-loose {
+  opacity: 0.3;
+  transform: scale(0.8);
+}

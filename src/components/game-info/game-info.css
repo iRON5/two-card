@@ -1,0 +1,14 @@
+.game-info-bar {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.game-info-bar > *:before {
+  content: '•';
+  margin-right: 1rem;
+}
+
+.game-info-bar > *:first-child:before {
+  content: '';
+}
