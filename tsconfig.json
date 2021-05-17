@@ -1,4 +1,5 @@
 {
+  "extends": "./custom.tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
     "target": "es6",
@@ -17,10 +18,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": "./src",
-    "paths": {
-      "~*": ["./*"]
-    },
     "strict": true
   },
   "include": [
