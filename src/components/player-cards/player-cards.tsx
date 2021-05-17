@@ -1,6 +1,7 @@
 import React from "react";
 import "./player-cards.css";
-import { STATUS } from "~constants";
+import { STATUS, PAIR_BORDERS, CARD_SHIRT_URL } from "~constants";
+import { CardsPair } from "~components/cards-pair";
 
 interface PlayerCardsProps {
   round: number;
@@ -10,6 +11,7 @@ interface PlayerCardsProps {
 
 export const PlayerCards: React.FC<PlayerCardsProps> = ({ status, round, player }) => {
   const looseBefore = (!!player.looseRound && round > player.looseRound);
+  const borders = [...PAIR_BORDERS];
 
   if (looseBefore) {
     return null;
@@ -20,17 +22,17 @@ export const PlayerCards: React.FC<PlayerCardsProps> = ({ status, round, player 
       {status !== STATUS.view || !player.pairsTree ? (
         Array(7).fill(null).map((_, i) => (
           <div key={i} className="card-wrapper">
-            <img src="https://github.com/htdebeer/SVG-cards/blob/master/png/1x/back.png?raw=true" className="card card-back" alt="card shirt" />
+            <img src={CARD_SHIRT_URL} className="card card-back" alt="card shirt" />
           </div>
         ))
-      ) : player.pairsTree?.map(([, pairs], i) => pairs.map(pair => (
-        <div key={`${player.id}_${i}`} className={pair.length === 2 ? 'cards-pair' : 'card-wrapper'}>
-          {pair.map((card) => (
-            <div key={card.url} className="card-wrapper">
-              <img src={card.url} className="card" alt={`${card.symbol} ${card.value}`} />
-            </div>
-          ))}
-        </div>
+      ) : player.pairsTree?.map(([, pairs], i) => pairs.map((pair, j) => (
+        <CardsPair
+          key={`${player.id}_${i}`}
+          index={j}
+          pair={pair}
+          isFullPair={pair.length === 2}
+          borderColor={pair.length === 2 && borders.pop() || ''}
+        />
       )))}
     </div>
   );

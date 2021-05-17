@@ -1,7 +1,7 @@
 export const MAX_HANDS_PAIRS = 4;
 export const MIN_HANDS_PAIRS = 2;
 export const CARD_SYMBOLS = ['heart', 'diamond', 'club', 'spade'];
-export const PAIR_BORDERS = ['red', 'purple', 'yellow'];
+export const PAIR_BORDERS = ['purple', 'blue', 'orange'];
 export const CARD_VALUES = [
   '2',
   '3',
@@ -25,3 +25,4 @@ export const STATUS = {
   compare: 'COMPARE',
   view: 'VIEW_RESULTS',
 };
+export const CARD_SHIRT_URL = `https://github.com/htdebeer/SVG-cards/blob/master/png/1x/back.png?raw=true`;
