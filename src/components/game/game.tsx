@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./game.css";
 import { STATUS } from "~constants";
-import { actions, usePairGameState } from '~state';
+import { actions, reducer, initialState } from '~state';
 import { GameInfo } from '~components/game-info';
 import { GameTable } from '~components/game-table';
 
@@ -41,7 +41,7 @@ const useGameRounds: UseGameRounds = ({
 };
 
 export const Game: React.FC = () => {
-  const [state, dispatch] = usePairGameState();
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { status, winner, round, secsLeft, playersCount, players } = state;
   const ready = useReadinessFlag(status);
 

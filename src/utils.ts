@@ -1,6 +1,6 @@
 import shuffle from 'lodash/shuffle';
 import { uniqueNamesGenerator, adjectives, names } from 'unique-names-generator';
-import { CARD_VALUES, CARD_SYMBOLS } from "~constants";
+import { CARD_VALUES, CARD_SYMBOLS, DEAL_QUANTITY } from "~constants";
 
  export const getNewPackOfCards = (): Card[] => {
   return shuffle(
@@ -38,14 +38,14 @@ const addNewCardOnTree = (card: Card, pairsTree: PairsTree) => {
 };
 
 /**
- * Deal 7 cards
+ * Deal cards
  */
 const pickCards = (packOfCards: Card[]) => {
   const pairsTree = createPairsTree();
   let pairsCount = 0;
 
   // create random cards and spread to groups by value
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < DEAL_QUANTITY; i++) {
     const newCard = packOfCards.pop();
 
     if (!newCard) {
@@ -93,10 +93,10 @@ export const createPlayers = (quantity: number) => {
 
 let timeout = 0;
 
-export const countdown = function* () {
+export const countdown = function* (secs: number) {
   clearTimeout(timeout);
 
-  for (let i = 10; i >= 0; i--) {
+  for (let i = secs; i >= 0; i--) {
     // eslint-disable-next-line no-loop-func
     yield new Promise((resolve) => {
       timeout = window.setTimeout(() => resolve(i), 1000);
@@ -151,4 +151,13 @@ export const dealCardsForPlayer = (player: Player, packOfCards: Card[]) => {
     pairs,
     pairsTree,
   }
+};
+
+export const dealCardsForActivePlayers = (players: Player[]) => {
+  const packOfCards = getNewPackOfCards();
+
+  return players.map(player => player.looseRound
+    ? player
+    : dealCardsForPlayer(player, packOfCards)
+  )
 };

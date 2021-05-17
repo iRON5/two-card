@@ -17,7 +17,8 @@ export const CARD_VALUES = [
   'K',
   'A',
 ];
-export const COUNTDOWN = 3;
+export const DEAL_QUANTITY = 7;
+export const COUNTDOWN = 10;
 export const STATUS = {
   prepare: 'PREPARE',
   deal: 'DEAL_CARDS',
