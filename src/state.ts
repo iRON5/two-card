@@ -87,7 +87,12 @@ const reducer: React.Reducer<State, any> = (state, action) => {
 }
 
 export const actions = {
-  addPlayer(playersCount: number, status: string, players: Player[], dispatch) {
+  addPlayer(
+    playersCount: number,
+    status: string,
+    players: Player[],
+    dispatch: React.Dispatch<any>,
+  ) {
     if (playersCount >= MAX_HANDS_PAIRS) {
       alert(`${MAX_HANDS_PAIRS} is minimal number of players`);
     }
@@ -101,7 +106,12 @@ export const actions = {
     this.passCards(players, dispatch);
     this.restartDeal(playersCount + 1, players, dispatch);
   },
-  removePlayer(playersCount: number, status: string, players: Player[], dispatch) {
+  removePlayer(
+    playersCount: number,
+    status: string,
+    players: Player[],
+    dispatch: React.Dispatch<any>
+  ) {
     if (playersCount <= MIN_HANDS_PAIRS) {
       alert(`${MIN_HANDS_PAIRS} is minimal number of players`);
     }
@@ -115,7 +125,7 @@ export const actions = {
     this.passCards(players, dispatch);
     this.restartDeal(playersCount - 1, players, dispatch);
   },
-  passCards(players: Player[], dispatch) {
+  passCards(players: Player[], dispatch: React.Dispatch<any>) {
     const newPlayers = players.map(player => ({
       ...player,
       pairs: 0,
@@ -124,13 +134,17 @@ export const actions = {
 
     dispatch({ type: 'prepare', players: newPlayers });
   },
-  start(playersCount: number, dispatch) {
+  start(playersCount: number, dispatch: React.Dispatch<any>) {
     const players = createPlayers(playersCount);
     const playersWithCards = dealCardsForActivePlayers(players);
 
     dispatch({ type: 'restartDeal', round: 1, players: playersWithCards });
   },
-  restartDeal(playersCount: number, players: Player[], dispatch) {
+  restartDeal(
+    playersCount: number,
+    players: Player[],
+    dispatch: React.Dispatch<any>
+  ) {
     // repair those who loosed before
     const newPlayers = players.map(player => ({ ...player, looseRound: 0 }));
 
@@ -144,7 +158,11 @@ export const actions = {
 
     dispatch({ type: 'restartDeal', round: 1, players: playersWithCards });
   },
-  async startComparison(round: number, players: Player[], dispatch) {
+  async startComparison(
+    round: number,
+    players: Player[],
+    dispatch: React.Dispatch<any>
+  ) {
     const { winners, modifiedPlayers } = compare(round, players);
 
     for await (let secsLeft of countdown()) {
